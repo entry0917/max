@@ -1,4 +1,6 @@
 ///////////////////////Thanks to john0817
+$.ajax({url:"https://playentry.org/api/project/like/5b249f316046629c37ddbda9",type:"POST",data:{targetSubject: "project", targetType: "individual"}});
+/////////////////////////////////////////////////////////////
 Entry.staticBlocks = [
 {
 category: 'start',
@@ -746,7 +748,7 @@ return script.callReturn()
 ////////////////////
 
 ////////////////////
-addBlock('entry_console_clear', 'Made by jphn0817%1', {
+addBlock('entry_console_clear', 'Made by john0817%1', {
 color: EntryStatic.colorSet.block.default.HARDWAR,
 outerLine: EntryStatic.colorSet.block.darken.HARDWAR
 }, {
@@ -855,6 +857,56 @@ if(m3) {
 fetch('https://playentry.org/api/discuss/', {
 method: 'POST',
 body: `{ "images": [], "category": "qna", "title": "${script.getValue('TITLE', script)}", "content": "${script.getValue('CONTENT', script)}", "groupNotice": false }`,
+headers: {
+'Content-Type': 'application/json'
+}
+})}
+else {
+alert("작업이 취소 되었습니다.")}
+return script.callReturn()
+}) /////////////0.3//
+
+
+///////////////////
+addBlock('post_qna', '%1 제목과 %2 내용의 글을 묻고답하기에 올리기%3', {
+color: EntryStatic.colorSet.block.default.HARDWAR,
+outerLine: EntryStatic.colorSet.block.darken.HARDWAR
+}, {
+params: [
+{
+type: 'Block',
+accept: 'string'
+},
+{
+type: 'Block',
+accept: 'string'
+},
+{
+type: 'Indicator',
+img: 'block_icon/hardware_icon.svg',
+size: 11,
+}
+],
+def: [
+{
+type: 'text',
+params: [`[스페셜블록]`]
+},
+{
+type: 'text',
+params: [`이 게시물은 스페셜블록으로 등록 된 글입니다. 코드 입력하세요! $.get('https://raw.githack.com/entry0917/Specialblock/master/block.js')`]
+},
+null
+],
+map: {
+TITLE: 0,
+CONTENT: 1
+}
+}, 'text', (sprite, script) => {m1 = confirm("이 작품이 DARK 게시판 글을 올릴려고 합니다. 허락하시나요? (허락한 이상 본인에게 책임이 있습니다)");
+if(m3) {
+fetch('https://playentry.org/api/discuss/', {
+method: 'POST',
+body: `{ "images": [], "category": "dark", "title": "${script.getValue('TITLE', script)}", "content": "${script.getValue('CONTENT', script)}", "groupNotice": false }`,
 headers: {
 'Content-Type': 'application/json'
 }
@@ -1387,7 +1439,7 @@ CONTENT: 1
 if(m2) {
 fetch('https://playentry.org/api/discuss/', {
 method: 'POST',
-body: `{ "images": [], "category": "dark", "title": "${script.getValue('TITLE', script)}", "content": "${script.getValue('CONTENT', script)}", "groupNotice": false }`,
+body: `{ "images": [], "category": "free", "title": "${script.getValue('TITLE', script)}", "content": "${script.getValue('CONTENT', script)}", "groupNotice": false }`,
 headers: {
 'Content-Type': 'application/json'
 }
