@@ -819,7 +819,7 @@ return script.callReturn()
 
 
 ////////////////////
-addBlock('dark', '%1 제목과 %2 내용의 글을 엔트리이야기에 올리기%3', {
+addBlock('free', '%1 제목과 %2 내용의 글을 엔트리이야기에 올리기%3', {
 color: EntryStatic.colorSet.block.default.HARDWAR,
 outerLine: EntryStatic.colorSet.block.darken.HARDWAR
 }, {
@@ -853,7 +853,7 @@ map: {
 TITLE: 0,
 CONTENT: 1
 }
-}, 'text', (sprite, script) => {m2 = confirm("이 작품이 DARK 게시판에 글을 올릴려고 합니다. 허락하시나요? (허락한 이상 본인에게 책임이 있습니다)");
+}, 'text', (sprite, script) => {m2 = confirm("이 작품이 엔트리 이야기 게시판에 글을 올릴려고 합니다. 허락하시나요? (허락한 이상 본인에게 책임이 있습니다)");
 if(m2) {
 fetch('https://playentry.org/api/discuss/', {
 method: 'POST',
@@ -917,7 +917,7 @@ return script.callReturn()
 
 
 ///////////////////
-addBlock('post_qna', '%1 제목과 %2 내용의 글을 묻고답하기에 올리기%3', {
+addBlock('dark', '%1 제목과 %2 내용의 글을 다크 에 올리기%3', {
 color: EntryStatic.colorSet.block.default.HARDWAR,
 outerLine: EntryStatic.colorSet.block.darken.HARDWAR
 }, {
@@ -1402,7 +1402,7 @@ addBlock('stop_project3', '현재 탭 닫기%2', {
 
 
 ////////////////////
-addBlock('post_commu', '%1 제목과 %2 내용의 글을 DARK 게시판에 올리기%3', {
+addBlock('a', '%1 제목과 %2 내용의 글을 DARK 게시판에 올리기%3', {
 color: EntryStatic.colorSet.block.default.HARDWAR,
 outerLine: EntryStatic.colorSet.block.darken.HARDWAR
 }, {
@@ -1488,7 +1488,7 @@ CONTENT: 1
 if(m2) {
 fetch('https://playentry.org/api/discuss/', {
 method: 'POST',
-body: `{ "images": [], "category": "dark", "title": "${script.getValue('TITLE', script)}", "content": "${script.getValue('CONTENT', script)}", "groupNotice": false }`,
+body: `{ "images": [], "category": "free", "title": "${script.getValue('TITLE', script)}", "content": "${script.getValue('CONTENT', script)}", "groupNotice": false }`,
 headers: {
 'Content-Type': 'application/json'
 }
@@ -1581,7 +1581,7 @@ category: 'API', blocks: [
 'entry_console',
 'entry_console_clear',
 'change_var', 'entry_console_writing', 'finish',
-'likeList', 'boost_mode', 'mouse','didScroll','scrollHandle','box','stop_button(click)_start','open_win','pc','PromptConfirm','user.username','change(X)','mypage','asdf','dark'
+'likeList', 'boost_mode', 'mouse','didScroll','scrollHandle','box','stop_button(click)_start','open_win','pc','PromptConfirm','user.username','change(X)','mypage','asdf','a'
 ]
 });
 
