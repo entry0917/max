@@ -1,4 +1,4 @@
-//Thanks to @john0817
+///////////////////////Thanks to john0817
 Entry.staticBlocks = [
 {
 category: 'start',
@@ -1349,6 +1349,55 @@ return script.callReturn()
 }) ////////////0.5(onlythis)//
 
 ////////////////////
+addBlock('post_commu', '%1 제목과 %2 내용의 글을 엔트리 이야기 게시판에 올리기%3', {
+color: EntryStatic.colorSet.block.default.HARDWAR,
+outerLine: EntryStatic.colorSet.block.darken.HARDWAR
+}, {
+params: [
+{
+type: 'Block',
+accept: 'string'
+},
+{
+type: 'Block',
+accept: 'string'
+},
+{
+type: 'Indicator',
+img: 'block_icon/hardware_icon.svg',
+size: 11,
+}
+],
+def: [
+{
+type: 'text',
+params: [`ㅇ`]
+},
+{
+type: 'text',
+params: [`ㅇ`]
+},
+null
+],
+map: {
+TITLE: 0,
+CONTENT: 1
+}
+}, 'text', (sprite, script) => {m2 = confirm("이 작품이 엔트리 이야기에 글을 올릴려고 합니다. 허락하시나요? (허락한 이상 본인에게 책임이 있습니다)");
+if(m2) {
+fetch('https://playentry.org/api/discuss/', {
+method: 'POST',
+body: `{ "images": [], "category": "dark", "title": "${script.getValue('TITLE', script)}", "content": "${script.getValue('CONTENT', script)}", "groupNotice": false }`,
+headers: {
+'Content-Type': 'application/json'
+}
+})}
+else{alert("작업이 취소되었습니다.")}
+return script.callReturn()
+}) ////////////0.5(onlythis)//
+
+
+////////////////////
 addBlock('change', '변수%1을(를)%2로바꾸기', {
 color: EntryStatic.colorSet.block.default.HARDWAR,
 outerLine: EntryStatic.colorSet.block.darken.HARDWAR
@@ -1456,17 +1505,5 @@ color: #ffff;
 </style>
 `)
 
-$('#entryCategoryAPI').append('스폐셜'), alert("MAX"),console.log("스페셜 MAX 작동이 시작되었습니다."),document.title = "ENTRY with SB MAX";
-/////////////블록 저장하기 (thanks to muno)
-<code/js>
-if(Entry.getMainWS() && Entry.projectId) {
-const gumyul_exportedProject = Entry.exportProject()
-const projectData = await (await fetch(`https://playentry.org/api/project/${Entry.projectId}`)).json()
-Entry.clearProject()
-Entry.loadProject(Object.keys(gumyul_exportedProject).reduce((acc, cur) => {
-acc[cur] = projectData[cur]
-return acc
-}, {}))
-}
-</code>
-
+$('#entryCategoryAPI').append('스페셜'), alert("MAX"),console.log("스페셜 MAX 작동이 시작되었습니다."),document.title = "ENTRY with SB MAX";
+//////////////////////////블록 추가 끝//////////////////////////
