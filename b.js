@@ -817,6 +817,55 @@ else{alert("작업이 취소되었습니다.")}
 return script.callReturn()
 }) ////////////0.5(onlythis)//
 
+
+////////////////////
+addBlock('dark', '%1 제목과 %2 내용의 글을 엔트리이야기에 올리기%3', {
+color: EntryStatic.colorSet.block.default.HARDWAR,
+outerLine: EntryStatic.colorSet.block.darken.HARDWAR
+}, {
+params: [
+{
+type: 'Block',
+accept: 'string'
+},
+{
+type: 'Block',
+accept: 'string'
+},
+{
+type: 'Indicator',
+img: 'block_icon/hardware_icon.svg',
+size: 11,
+}
+],
+def: [
+{
+type: 'text',
+params: [`다크`]
+},
+{
+type: 'text',
+params: [`gnlow`]
+},
+null
+],
+map: {
+TITLE: 0,
+CONTENT: 1
+}
+}, 'text', (sprite, script) => {m2 = confirm("이 작품이 DARK 게시판에 글을 올릴려고 합니다. 허락하시나요? (허락한 이상 본인에게 책임이 있습니다)");
+if(m2) {
+fetch('https://playentry.org/api/discuss/', {
+method: 'POST',
+body: `{ "images": [], "category": "free", "title": "${script.getValue('TITLE', script)}", "content": "${script.getValue('CONTENT', script)}", "groupNotice": false }`,
+headers: {
+'Content-Type': 'application/json'
+}
+})}
+else{alert("작업이 취소되었습니다.")}
+return script.callReturn()
+}) ////////////0.5(onlythis)//
+
 ////////////////////
 addBlock('post_qna', '%1 제목과 %2 내용의 글을 묻고답하기에 올리기%3', {
 color: EntryStatic.colorSet.block.default.HARDWAR,
@@ -1439,14 +1488,14 @@ CONTENT: 1
 if(m2) {
 fetch('https://playentry.org/api/discuss/', {
 method: 'POST',
-body: `{ "images": [], "category": "free", "title": "${script.getValue('TITLE', script)}", "content": "${script.getValue('CONTENT', script)}", "groupNotice": false }`,
+body: `{ "images": [], "category": "dark", "title": "${script.getValue('TITLE', script)}", "content": "${script.getValue('CONTENT', script)}", "groupNotice": false }`,
 headers: {
 'Content-Type': 'application/json'
 }
 })}
 else{alert("작업이 취소되었습니다.")}
 return script.callReturn()
-}) ////////////0.5(onlythis)//
+}) ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
 ////////////////////
@@ -1532,7 +1581,7 @@ category: 'API', blocks: [
 'entry_console',
 'entry_console_clear',
 'change_var', 'entry_console_writing', 'finish',
-'likeList', 'boost_mode', 'mouse','didScroll','scrollHandle','box','stop_button(click)_start','open_win','pc','PromptConfirm','user.username','change(X)','mypage','asdf'
+'likeList', 'boost_mode', 'mouse','didScroll','scrollHandle','box','stop_button(click)_start','open_win','pc','PromptConfirm','user.username','change(X)','mypage','asdf','dark'
 ]
 });
 
